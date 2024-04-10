@@ -25,7 +25,7 @@ const postsListContainer = document.querySelector(".posts-list-container");
 
 // fetch data using fetch method
 
-function fetchDataUsingFetchMethod() {
+/* function fetchDataUsingFetchMethod() {
   const fetchRequest = fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "GET",
   });
@@ -35,6 +35,24 @@ function fetchDataUsingFetchMethod() {
     .then((result) => displayResult(result))
     .catch((e) => console.log(e));
 }
+
+
+
+
+ */
+
+// fetch data using async await method
+
+async function fetchDataUsingAsyncAwait() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "GET",
+  });
+
+  const data = await response.json();
+  displayResult(data);
+}
+
+// display data
 
 function displayResult(posts) {
   postsListContainer.innerHTML = posts
@@ -51,4 +69,5 @@ function displayResult(posts) {
 
 // call this function
 // fetchUsingXHR();
-fetchDataUsingFetchMethod();
+// fetchDataUsingFetchMethod();
+fetchDataUsingAsyncAwait();
