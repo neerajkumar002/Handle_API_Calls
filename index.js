@@ -2,7 +2,7 @@ const postsListContainer = document.querySelector(".posts-list-container");
 
 // Fetch using XHR (XML HTTP REQUEST)
 
-function fetchUsingXHR() {
+/* function fetchUsingXHR() {
   //   1- create XMLHttpRequest instance
   const xhr = new XMLHttpRequest();
   //   2- call the open method - open file and specify request method
@@ -21,18 +21,34 @@ function fetchUsingXHR() {
       console.log("Something went wrong..");
     }
   };
+} */
+
+// fetch data using fetch method
+
+function fetchDataUsingFetchMethod() {
+  const fetchRequest = fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "GET",
+  });
+
+  fetchRequest
+    .then((response) => response.json())
+    .then((result) => displayResult(result))
+    .catch((e) => console.log(e));
 }
 
 function displayResult(posts) {
-  postsListContainer.innerHTML = posts.map(
-    (post) => `
+  postsListContainer.innerHTML = posts
+    .map(
+      (post) => `
     <div class="post-container">
     <h3>${post.title}</h3>
     <p>${post.body}</p>
     </div> 
   `
-  ).join(" ");
+    )
+    .join(" ");
 }
 
 // call this function
-fetchUsingXHR();
+// fetchUsingXHR();
+fetchDataUsingFetchMethod();
